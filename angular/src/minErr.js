@@ -33,7 +33,7 @@
 function minErr(module, ErrorConstructor) {
   ErrorConstructor = ErrorConstructor || Error;
   return function() {
-    var SKIP_INDEXES = 2;
+    var SKIP_INDEXES = 2;  //大写常量  好习惯
 
     var templateArgs = arguments,
       code = templateArgs[0],
@@ -42,10 +42,12 @@ function minErr(module, ErrorConstructor) {
       paramPrefix, i;
 
     message += template.replace(/\{\d+\}/g, function(match) {
+      //用 + 来转换match为String ,避免调用slice方法出错，slice方法的参数为负数，代表从字符串的尾巴倒着数
       var index = +match.slice(1, -1),
         shiftedIndex = index + SKIP_INDEXES;
 
       if (shiftedIndex < templateArgs.length) {
+	    //  toDebugString方法在stringify.js中，后面再看
         return toDebugString(templateArgs[shiftedIndex]);
       }
 
@@ -55,6 +57,7 @@ function minErr(module, ErrorConstructor) {
     message += '\nhttp://errors.angularjs.org/"NG_VERSION_FULL"/' +
       (module ? module + '/' : '') + code;
 
+	//  paramPrefix在循环初定义为 '?' , 之后变为'&' , 又学到了
     for (i = SKIP_INDEXES, paramPrefix = '?'; i < templateArgs.length; i++, paramPrefix = '&') {
       message += paramPrefix + 'p' + (i - SKIP_INDEXES) + '=' +
         encodeURIComponent(toDebugString(templateArgs[i]));
