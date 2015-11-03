@@ -1,103 +1,5 @@
 'use strict';
 
-/* We need to tell jshint what variables are being exported */
-/* global angular: true,
-  msie: true,
-  jqLite: true,
-  jQuery: true,
-  slice: true,
-  splice: true,
-  push: true,
-  toString: true,
-  ngMinErr: true,
-  angularModule: true,
-  uid: true,
-  REGEX_STRING_REGEXP: true,
-  VALIDITY_STATE_PROPERTY: true,
-
-  lowercase: true,
-  uppercase: true,
-  manualLowercase: true,
-  manualUppercase: true,
-  nodeName_: true,
-  isArrayLike: true,
-  forEach: true,
-  forEachSorted: true,
-  reverseParams: true,
-  nextUid: true,
-  setHashKey: true,
-  extend: true,
-  toInt: true,
-  inherit: true,
-  merge: true,
-  noop: true,
-  identity: true,
-  valueFn: true,
-  isUndefined: true,
-  isDefined: true,
-  isObject: true,
-  isBlankObject: true,
-  isString: true,
-  isNumber: true,
-  isDate: true,
-  isArray: true,
-  isFunction: true,
-  isRegExp: true,
-  isWindow: true,
-  isScope: true,
-  isFile: true,
-  isFormData: true,
-  isBlob: true,
-  isBoolean: true,
-  isPromiseLike: true,
-  trim: true,
-  escapeForRegexp: true,
-  isElement: true,
-  makeMap: true,
-  includes: true,
-  arrayRemove: true,
-  copy: true,
-  shallowCopy: true,
-  equals: true,
-  csp: true,
-  jq: true,
-  concat: true,
-  sliceArgs: true,
-  bind: true,
-  toJsonReplacer: true,
-  toJson: true,
-  fromJson: true,
-  convertTimezoneToLocal: true,
-  timezoneToOffset: true,
-  startingTag: true,
-  tryDecodeURIComponent: true,
-  parseKeyValue: true,
-  toKeyValue: true,
-  encodeUriSegment: true,
-  encodeUriQuery: true,
-  angularInit: true,
-  bootstrap: true,
-  getTestability: true,
-  snake_case: true,
-  bindJQuery: true,
-  assertArg: true,
-  assertArgFn: true,
-  assertNotHasOwnProperty: true,
-  getter: true,
-  getBlockNodes: true,
-  hasOwnProperty: true,
-  createMap: true,
-
-  NODE_TYPE_ELEMENT: true,
-  NODE_TYPE_ATTRIBUTE: true,
-  NODE_TYPE_TEXT: true,
-  NODE_TYPE_COMMENT: true,
-  NODE_TYPE_DOCUMENT: true,
-  NODE_TYPE_DOCUMENT_FRAGMENT: true,
-*/
-
-////////////////////////////////////
-
 /**
  * @ngdoc module
  * @name ng
@@ -105,18 +7,18 @@
  * @description
  *
  * # ng (core module)
- * The ng module is loaded by default when an AngularJS application is started. The module itself
- * contains the essential components for an AngularJS application to function. The table below
+ * ng module 是在AngularJS程序启动时默认加载的.ng module包含了AngularJS程序运行时所需要的一些基本组件.
+ * 下面列出了一些高度抽象的组件/方法.
+ * The table below
  * lists a high level breakdown of each of the services/factories, filters, directives and testing
  * components available within this core module.
- *
- * <div doc-module-components="ng"></div>
  */
 
+    //匹配正则字符串
 var REGEX_STRING_REGEXP = /^\/(.+)\/([a-z]*)$/;
 
-// The name of a form control's ValidityState property.
-// This is used so that it's possible for internal tests to create mock ValidityStates.
+//表单控件的验证状态
+//这个状态用来在内部测试的时候可以创建 mock 验证状态
 var VALIDITY_STATE_PROPERTY = 'validity';
 
 /**
@@ -125,10 +27,11 @@ var VALIDITY_STATE_PROPERTY = 'validity';
  * @module ng
  * @kind function
  *
- * @description Converts the specified string to lowercase.
- * @param {string} string String to be converted to lowercase.
- * @returns {string} Lowercased string.
+ * @description 转换string为小写.
+ * @param {string} 待转换的string.
+ * @returns {string} 转换后的string.
  */
+//实际上就是调用的string.toLowerCase(),只是加上了参数是否为tring类型的判断
 var lowercase = function(string) {return isString(string) ? string.toLowerCase() : string;};
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
