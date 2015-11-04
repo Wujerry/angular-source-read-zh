@@ -99,7 +99,8 @@ msie = document.documentMode;
  * @param {*} obj
  * @return {boolean} 如果`obj`的类型为 array 或者 array-like(像NodeList, Arguments,string之类的有length属性的) 返回 ture
  */
-//这个函数跟jQuery的基本一样
+//这个函数跟jQuery的基本一样,大概的作用就是用来判断一个对象是否有length属性,并且可以用obj[n]这种方式来读取属性,
+//如Arguments这种,他的并没有继承Array,没有那些forEach,map,reduce之类的方法
 function isArrayLike(obj) {
   if (obj == null || isWindow(obj)) {
     return false;
