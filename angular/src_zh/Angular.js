@@ -88,7 +88,7 @@ var
     uid               = 0;
 
 /**
- * documentMode is an IE-only property
+ * documentMode 是IE 专用属性  IE真是6
  * http://msdn.microsoft.com/en-us/library/ie/cc196988(v=vs.85).aspx
  */
 msie = document.documentMode;
@@ -97,9 +97,9 @@ msie = document.documentMode;
 /**
  * @private
  * @param {*} obj
- * @return {boolean} Returns true if `obj` is an array or array-like object (NodeList, Arguments,
- *                   String ...)
+ * @return {boolean} 如果`obj`的类型为 array 或者 array-like(像NodeList, Arguments,string之类的有length属性的) 返回 ture
  */
+//这个函数跟jQuery的基本一样
 function isArrayLike(obj) {
   if (obj == null || isWindow(obj)) {
     return false;
@@ -107,6 +107,7 @@ function isArrayLike(obj) {
 
   // Support: iOS 8.2 (not reproducible in simulator)
   // "length" in obj used to prevent JIT error (gh-11508)
+  // 兼容 iOS 8.2  JIT error 是个什么卵
   var length = "length" in Object(obj) && obj.length;
 
   if (obj.nodeType === NODE_TYPE_ELEMENT && length) {
