@@ -41,13 +41,14 @@ var hasOwnProperty = Object.prototype.hasOwnProperty;
  * @module ng
  * @kind function
  *
- * @description Converts the specified string to uppercase.
- * @param {string} string String to be converted to uppercase.
- * @returns {string} Uppercased string.
+ * @description 转换string为大写.
+ * @param {string} 待转换的string.
+ * @returns {string} 转换后的string.
  */
 var uppercase = function(string) {return isString(string) ? string.toUpperCase() : string;};
 
-
+//手动转换大小写
+//至于为什么会有这种奇怪的东西,先不要急,看后面
 var manualLowercase = function(s) {
   /* jshint bitwise: false */
   return isString(s)
@@ -61,10 +62,9 @@ var manualUppercase = function(s) {
       : s;
 };
 
+//哈哈哈哈,当浏览器遇到土耳其语的时候,String#toLowerCase 和 String#toUpperCase不能得到正确的结果,
+// 所以有了上面的手动转换,只是效率要低一些.
 
-// String#toLowerCase and String#toUpperCase don't produce correct results in browsers with Turkish
-// locale, for this reason we need to detect this case and redefine lowercase/uppercase methods
-// with correct but slower alternatives.
 if ('i' !== 'I'.toLowerCase()) {
   lowercase = manualLowercase;
   uppercase = manualUppercase;
@@ -72,9 +72,9 @@ if ('i' !== 'I'.toLowerCase()) {
 
 
 var
-    msie,             // holds major version number for IE, or NaN if UA is not IE.
-    jqLite,           // delay binding since jQuery could be loaded after us.
-    jQuery,           // delay binding
+    msie,             // 缓存IE的版本信息,当不是IE的时候,为 NaN
+    jqLite,           // jquery可以在angular.js后加载,延迟绑定
+    jQuery,           // 延迟绑定
     slice             = [].slice,
     splice            = [].splice,
     push              = [].push,
