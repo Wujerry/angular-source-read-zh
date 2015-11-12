@@ -126,6 +126,7 @@ function isArrayLike(obj) {
  * @kind function
  *
  * @description
+ * 对 `obj` (可以是 object 或者 array)的每一个属性
  * Invokes the `iterator` function once for each item in `obj` collection, which can be either an
  * object or an array. The `iterator` function is invoked with `iterator(value, key, obj)`, where `value`
  * is the value of an object property or an array element, `key` is the object property key or
